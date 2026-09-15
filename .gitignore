@@ -1,0 +1,12 @@
+# Dados brutos (não versionar — arquivos grandes)
+data/
+*.csv
+*.tsv
+*.bak
+
+# Databricks / Jupyter
+.ipynb_checkpoints/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
