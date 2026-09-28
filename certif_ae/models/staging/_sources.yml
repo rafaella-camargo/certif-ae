@@ -1,0 +1,38 @@
+version: 2
+
+sources:
+  - name: adventureworks
+    description: "Camada Silver do AdventureWorks (dados tipados e validados)."
+    database: workspace              # catálogo (Unity Catalog)
+    schema: adventureworks_silver
+    tables:
+      - name: salesorderdetail
+        columns:
+          - name: SalesOrderDetailID
+            tests: [unique, not_null]
+      - name: salesorderheader
+        columns:
+          - name: SalesOrderID
+            tests: [unique, not_null]
+      - name: product
+        columns:
+          - name: ProductID
+            tests: [unique, not_null]
+      - name: address
+      - name: stateprovince
+      - name: countryregion
+      - name: customer
+        columns:
+          - name: CustomerID
+            tests: [unique, not_null]
+      - name: person
+      - name: store          # PENDENTE de ingestão — necessária p/ dim_cliente
+      - name: creditcard
+        columns:
+          - name: CreditCardID
+            tests: [unique, not_null]
+      - name: salesreason
+        columns:
+          - name: SalesReasonID
+            tests: [unique, not_null]
+      - name: salesorderheadersalesreason

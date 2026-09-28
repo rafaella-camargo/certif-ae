@@ -1,0 +1,19 @@
+name: 'certif_ae'
+version: '1.0.0'
+config-version: 2
+
+profile: 'certif_ae'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+models:
+  certif_ae:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: ephemeral
+    marts:
+      +materialized: table

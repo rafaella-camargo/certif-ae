@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: int_geografia
+    description: "Geografia consolidada (cidade/estado/país) por endereço."
+  - name: int_cliente
+    description: "Cliente com tipo (precedência StoreID), nome e flag tem_contato."
+  - name: int_pedido_motivo
+    description: "Ponte N:N entre pedido e motivo."

@@ -1,0 +1,72 @@
+version: 2
+
+models:
+  - name: fct_vendas
+    description: "Fato de vendas. Grão: 1 item de pedido. SalesOrderID é dimensão degenerada."
+    columns:
+      - name: SalesOrderDetailID
+        description: "PK da linha (item de pedido)."
+        tests: [unique, not_null]
+      - name: ProductID
+        tests:
+          - not_null
+          - relationships: {to: ref('dim_produto'), field: ProductID}
+      - name: CustomerID
+        tests:
+          - not_null
+          - relationships: {to: ref('dim_cliente'), field: CustomerID}
+      - name: CreditCardID
+        tests:
+          - not_null
+          - relationships: {to: ref('dim_cartao'), field: CreditCardID}
+      - name: GeoKey
+        tests:
+          - not_null
+          - relationships: {to: ref('dim_geografia'), field: GeoKey}
+      - name: DateKey
+        tests:
+          - not_null
+          - relationships: {to: ref('dim_data'), field: DateKey}
+      - name: Status
+        tests:
+          - not_null
+          - relationships: {to: ref('dim_status'), field: Status}
+
+  - name: dim_produto
+    columns:
+      - name: ProductID
+        tests: [unique, not_null]
+  - name: dim_data
+    columns:
+      - name: DateKey
+        tests: [unique, not_null]
+  - name: dim_geografia
+    columns:
+      - name: GeoKey
+        tests: [unique, not_null]
+  - name: dim_cliente
+    columns:
+      - name: CustomerID
+        tests: [unique, not_null]
+      - name: tipo
+        tests:
+          - accepted_values: {values: ['Loja', 'Pessoa Física']}
+  - name: dim_cartao
+    columns:
+      - name: CreditCardID
+        tests: [unique, not_null]
+  - name: dim_status
+    columns:
+      - name: Status
+        tests: [unique, not_null]
+  - name: dim_motivo
+    columns:
+      - name: SalesReasonID
+        tests: [unique, not_null]
+
+  - name: br_pedido_motivo
+    description: "Ponte N:N pedido<->motivo."
+    columns:
+      - name: SalesReasonID
+        tests:
+          - relationships: {to: ref('dim_motivo'), field: SalesReasonID}

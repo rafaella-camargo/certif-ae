@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_salesorderdetail
+    columns:
+      - name: SalesOrderDetailID
+        tests: [unique, not_null]
+  - name: stg_salesorderheader
+    columns:
+      - name: SalesOrderID
+        tests: [unique, not_null]
+  - name: stg_product
+    columns:
+      - name: ProductID
+        tests: [unique, not_null]
+  - name: stg_customer
+    columns:
+      - name: CustomerID
+        tests: [unique, not_null]
+  - name: stg_creditcard
+    columns:
+      - name: CreditCardID
+        tests: [unique, not_null]
+  - name: stg_salesreason
+    columns:
+      - name: SalesReasonID
+        tests: [unique, not_null]
